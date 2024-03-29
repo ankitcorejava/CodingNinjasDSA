@@ -21,9 +21,11 @@ package com.searchingandsorting;
  * will return the index of element 21. Hence, the answer is '4'
  */
 public class BinarySearchClosest {
-	
-	public static int binarySearchClosest(int []nums, int left, int right, int target) {
-        //Your code goes here
-    }
+
+	public static int binarySearchClosest(int[] nums, int left, int right, int target) {
+		
+		
+		
+	}
 
 }
