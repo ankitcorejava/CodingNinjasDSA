@@ -36,28 +36,16 @@ package com.searchingandsorting;
  * output 2: nums = [1, 2, 3, 4, 5, 6, 7], Element '9' doesn't exist. Hence, the
  * answer is '-1'.
  */
-public class BinarySearch {
+public class LinearSearch {
 
 	public static int search(int[] nums, int target) {
 
-		int idxLow = 0;
-		int idxHigh = nums.length - 1;
-
-		while (idxLow <= idxHigh) {
-
-			// Find mid
-			int mid = ((idxLow + idxHigh) / 2);
-
-			// Base Case:
-			if (nums[mid] == target) {
-				//System.out.println(mid);
-				return mid;
-			} else if (target > nums[mid]) {
-				idxLow = mid + 1;
-			} else if (target < nums[mid]) {
-				idxHigh = mid - 1;
+		int iCnt = 0;
+		for (int num : nums) {
+			if (num == target) {
+				return iCnt;
 			}
-
+			iCnt++;
 		}
 
 		return -1;
@@ -66,6 +54,6 @@ public class BinarySearch {
 	public static void main(String[] args) {
 
 		int[] nums = { 1, 2, 3, 4, 5, 6, 17 };
-		System.out.println(search(nums, 17));
+		System.out.println(search(nums, 7));
 	}
 }

@@ -23,9 +23,44 @@ package com.searchingandsorting;
 public class BinarySearchClosest {
 
 	public static int binarySearchClosest(int[] nums, int left, int right, int target) {
-		
-		
-		
+
+		int idxLow = left;
+		int idxHigh = right;
+		int smallestDiff = Integer.MAX_VALUE;
+		int idxCloses = 0;
+
+		while (idxLow <= idxHigh) {
+
+			// Find mid
+			int mid = ((idxLow + idxHigh) / 2);
+
+			// Base Case:
+			if (nums[mid] == target) {
+				// System.out.println(mid);
+				return mid;
+			} else if (target > nums[mid]) {
+				idxLow = mid + 1;
+				if (Math.subtractExact(target, nums[mid]) < smallestDiff) {
+					smallestDiff = Math.subtractExact(target, nums[mid]);
+					idxCloses = mid;
+				}
+			} else if (target < nums[mid]) {
+				idxHigh = mid - 1;
+				if (Math.subtractExact(nums[mid], target) < smallestDiff) {
+					smallestDiff = Math.subtractExact(nums[mid],target);
+					idxCloses = mid;
+				}
+			}
+
+		}
+
+		return idxCloses;
+	}
+
+	public static void main(String[] args) {
+
+		int[] nums = {6, 7, 11, 13, 21, 44, 46 };
+		System.out.println(binarySearchClosest(nums, 0, nums.length - 1, 22));
 	}
 
 }
