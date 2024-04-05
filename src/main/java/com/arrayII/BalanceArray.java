@@ -62,14 +62,17 @@ public class BalanceArray {
 
 	public static void main(String[] args) {
 
-		int[] input = { 1, 2, 3, -2, -1, -3 };
+		/*int[] input = { 1, 2, 3, -2, -1, -3 ,0};
 		System.out.println(isBalanceArray(input));
 
 		int[] input2 = { 1, 2, 3, -2, -1, -3, -3 };
 		System.out.println(isBalanceArray(input2));
 
 		int[] input3 = { 1, 2, 3, -2, -1, -3, 0 };
-		System.out.println(isBalanceArray(input3));
+		System.out.println(isBalanceArray(input3));*/
+		
+		int[] input4 = { -1,1,1,0,1};
+		System.out.println(isBalanceArray(input4));
 
 	}
 
