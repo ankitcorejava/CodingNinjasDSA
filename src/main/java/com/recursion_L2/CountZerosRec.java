@@ -22,9 +22,9 @@ public class CountZerosRec {
 		}
 
 		// Base Case::
-		if (input == 1) {
+		if (input > 0 && input <10 ) {
 			System.out.println("input Base :" + input);
-			return 1;
+			return 0;
 		}
 
 		int sub_sum = countZerosRec((input / 10));
@@ -38,6 +38,6 @@ public class CountZerosRec {
 	}
 
 	public static void main(String[] args) {
-		System.out.println(countZerosRec(10204));
+		System.out.println(countZerosRec(30452032));
 	}
 }
