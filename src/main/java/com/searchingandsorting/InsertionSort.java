@@ -1,5 +1,7 @@
 package com.searchingandsorting;
 
+import java.util.Arrays;
+
 /**
  * You are given an integer array 'arr' of size 'N'. You must sort this array
  * using 'Insertion Sort' recursively. Note: Change in the input array itself.
@@ -12,7 +14,7 @@ public class InsertionSort {
 
 	public static void insertionSort(int[] arr, int size) {
 
-		for (int i = 0; i < arr.length-1; i++) {
+		for (int i = 0; i < arr.length - 1; i++) {
 			int j = i + 1;
 			if (arr[j] < arr[i]) {
 				while ((j > 0) && (arr[j] < arr[j - 1])) {
@@ -22,8 +24,7 @@ public class InsertionSort {
 			}
 
 		}
-		//System.out.println(arr);
-
+		Arrays.stream(arr).boxed().forEach(x -> System.out.print(x + " "));
 	}
 
 	private static int[] swap(int[] arr, int j, int i) {
@@ -33,10 +34,10 @@ public class InsertionSort {
 		return arr;
 
 	}
-	
+
 	public static void main(String[] args) {
-		int input[] = {2, 13, 4, 1, 3, 6, 28};
-		insertionSort(input,input.length);
+		int input[] = { 2, 13, 4, 1, 3, 6, 28 };
+		insertionSort(input, input.length);
 	}
 
 }
