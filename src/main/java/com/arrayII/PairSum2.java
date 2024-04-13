@@ -2,6 +2,7 @@ package com.arrayII;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -23,26 +24,26 @@ public class PairSum2 {
 
 	public static int pairSum(int[] arr, int num) {
 
-		List<List<Integer>> listAns = new ArrayList<List<Integer>>();
+		Set<List<Integer>> listAns = new HashSet<>();
 
 		List<Integer> list = Arrays.stream(arr).boxed().collect(Collectors.toList());
 
-		for (int i =0 ; i< list.size(); i++) {
+		Map<Integer, Integer> elementToIndex = new HashMap<>();
+
+		for (int i = 0; i < list.size(); i++) {
 
 			int searchInput = num - (list.get(i));
-			if (list.contains(searchInput)) {
+			if (elementToIndex.containsKey(searchInput)) {
 
 				List<Integer> ans = new ArrayList<>();
 				ans.add(i);
-				ans.add(list.indexOf(searchInput));
+				ans.add(elementToIndex.get(searchInput));
+				Collections.sort(ans);
 				listAns.add(ans);
-				//list.remove((Object) searchInput);
+				// list.remove((Object) searchInput);
 
 			}
-			if (list.size() > 0) {
-				//list.remove(0);
-			}
-
+			elementToIndex.put(arr[i], i);
 		}
 
 		return listAns.size();
@@ -50,12 +51,16 @@ public class PairSum2 {
 	}
 
 	public static void main(String[] args) {
-		/*int[] a = { 2, 8, 10, 5, -2, 5 };
-		int target = 10;
-		System.out.println(pairSum(a, target));*/
-		
-		int[] a1 = { 0,6,0,0 };
-		int target1 = 6;
-		System.out.println(pairSum(a1, target1));
+		/*
+		 * int[] a = { 2, 8, 10, 5, -2, 5 }; int target = 10;
+		 * System.out.println(pairSum(a, target));
+		 * 
+		 * int[] a1 = { 0,6,0,0 }; int target1 = 6; System.out.println(pairSum(a1,
+		 * target1));
+		 */
+
+		int[] a2 = { 3, 3, 3, 3, 3 };
+		int target2 = 6;
+		System.out.println(pairSum(a2, target2));
 	}
 }
