@@ -64,7 +64,7 @@ public class CountBracketReversals {
 
 		System.out.println("}}}{{{ : " + countBracketReversals("}}}{{{"));
 
-		System.out.println("{}{}}{ : " + countBracketReversals("{}{}}{"));
+		System.out.println(countBracketReversals("{{}}{}}}}}{{{{{{{}{}{}}{}}{}}{{}{}{}{{{}{{}{{}{{{}{}}{{{{{{}}{}}}}}}}}}{}{}}}{{}{{}}}}}}{}}{}{{}}}{{"));
 	}
 
 }
