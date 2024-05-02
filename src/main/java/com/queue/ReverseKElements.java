@@ -15,7 +15,7 @@ public class ReverseKElements {
 
 		reverseKElements_helper(input, k);
 
-		 for (int i = 0; i < input.size() - k-1; i++) {
+		 for (int i = 0; i < input.size() - k; i++) {
 			 System.out.println(input.peek());
 			 input.add(input.poll());
 	        }
@@ -26,12 +26,15 @@ public class ReverseKElements {
 	public static void reverseKElements_helper(Queue<Integer> input, int k) {
 
 		// Base Case:
-		if (input.size() <= k) {
+		if (input.size() ==0) {
+			return;
+		}		
+		if(k < 0) {
 			return;
 		}
 
 		int removedElement = input.poll();
-		reverseKElements_helper(input, k);
+		reverseKElements_helper(input, k-1);
 		input.add(removedElement);
 
 	}
