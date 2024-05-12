@@ -198,7 +198,63 @@ public class ReverseNode {
 
 		}
 		display(pre);
-		//return pre;
+		// return pre;
+	}
+
+	public static Node reverse(Node root) {
+		// Your code goes here
+		Node loop = root;
+		Node pre = null;
+		Node current = root;
+
+		while (loop != null) {
+			loop = loop.next;
+			current.next = pre;
+			pre = current;
+			current = loop;
+
+		}
+
+		return pre;
+	}
+
+	public static Node kReverse(Node root, int k) {
+		if (root == null) {
+			return root;
+		}
+
+		Node itr = root;
+		Node ref = itr;
+
+		Node temp = new Node(-1);
+		Node tempRef = temp;
+
+		while (ref != null) {
+
+			Node pointer = ref;
+			int i = 1;
+			while ((i < k) && (ref.next != null)) {
+
+				ref = ref.next;
+				i++;
+			}
+
+			Node ref2 = ref.next; //Next reference
+
+			ref.next = null;
+			Node temp2 = reverse(pointer);
+			
+			/*System.out.println("*****************");
+			display(temp2);*/
+
+			tempRef.next = temp2;
+			while (tempRef.next != null) {
+				tempRef = tempRef.next;
+			}
+			ref = ref2;
+		}
+
+		return temp;
 	}
 
 	public static void main(String[] args) {
@@ -226,7 +282,7 @@ public class ReverseNode {
 		s1.insertAtEnd(newNode9);
 		Node newNode10 = new Node(8);
 		s1.insertAtEnd(newNode10);
-		Node newNode1000 = new Node(-1);
+		Node newNode1000 = new Node(9);
 		s1.insertAtEnd(newNode1000);
 
 		// display(s1.head);
@@ -238,9 +294,11 @@ public class ReverseNode {
 		display(s1.head);
 
 		System.out.println();
-		printReverse(head);
+		//printReverse(head);
 
-		//display(head);
+		System.out.println("**************************");
+		head = kReverse(head, 2);
+		display(head);
 
 	}
 

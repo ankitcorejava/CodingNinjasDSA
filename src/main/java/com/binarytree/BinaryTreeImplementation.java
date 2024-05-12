@@ -1,5 +1,7 @@
 package com.binarytree;
 
+import java.util.ArrayDeque;
+import java.util.Queue;
 import java.util.Stack;
 
 public class BinaryTreeImplementation {
@@ -49,20 +51,38 @@ public class BinaryTreeImplementation {
 			return;
 		}
 
-		int left = root.left == null ? -1 : root.left.data;
-		int right = root.right == null ? -1 : root.right.data;
+		Queue<BinaryTree> rootq = new ArrayDeque<>();
+		rootq.add(root);
+		Queue<BinaryTree> childq = new ArrayDeque<>();
 
-		System.out.println(root.data + ":" + "L:" + left + ",R:" + right);
+		while (rootq.size() > 0 || childq.size() > 0) {
+			while (rootq.size() > 0) {
 
-		printLevelWise(root.left);
-		printLevelWise(root.right);
-		
-		
+				BinaryTree subroot = rootq.peek();
+				if (subroot != null) {
+					int left = subroot.left == null ? -1 : subroot.left.data;
+					int right = subroot.right == null ? -1 : subroot.right.data;
+
+					System.out.println(subroot.data + ":" + "L:" + left + ",R:" + right);
+					if (subroot.left != null) {
+						childq.add(subroot.left);
+					}
+					if (subroot.right != null) {
+						childq.add(subroot.right);
+					}
+					rootq.poll();
+				}
+			}
+
+			rootq = childq;
+			childq = new ArrayDeque<>();
+		}
+
 	}
 
 	public static void main(String[] args) {
 
-		int input[] = { 5, 6, 10, 2, 3, -1 ,-1 ,-1, -1, -1, 9, -1 ,-1 };
+		int input[] = { 5, 6, 10, 2, 3, -1, -1, -1, -1, -1, 9, -1, -1 };
 
 		Stack<Pair> stack = new Stack<>();
 		BinaryTree root = new BinaryTree(input[0]);
@@ -109,7 +129,7 @@ public class BinaryTreeImplementation {
 
 		}
 
-		//printTree(root);
+		// printTree(root);
 
 		System.out.println();
 

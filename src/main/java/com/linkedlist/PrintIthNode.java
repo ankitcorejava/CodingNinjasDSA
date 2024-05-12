@@ -140,6 +140,72 @@ public class PrintIthNode {
 		return head;
 	}
 
+	public static Node reverseLL(Node head) {
+
+		if (head == null) {
+			return head;
+		}
+
+		Node current = head;
+		Node previous = null;
+
+		while (current != null) {
+			Node nextNode = current.next;
+			current.next = previous;
+			previous = current;
+			current = nextNode;
+		}
+
+		head = previous;
+		return head;
+
+	}
+
+	public static Node appendLastNToFirst(Node head, int n) {
+
+		if(head.data == -1) {
+			return head;
+		}
+		
+		head = reverseLL(head);
+
+		Node current1 = head;
+		Node currentRef = current1;
+		Node current2 = new Node(-1); // Temp Ref
+
+		int i = 1;
+		while ((i < n) && (currentRef != null)) {
+			currentRef = currentRef.next;
+			i++;
+		}
+		current2.next = currentRef.next;
+		currentRef.next = null;
+		
+
+		/*System.out.println("/n********current1********");
+		display(current1);
+		System.out.println("/n********Reverse current1********");*/
+		head = reverseLL(current1);
+		//display(head);
+		
+
+		/*System.out.println("/n********current2********");
+		display(current2);*/
+		
+		//System.out.println("/n********Reverse current2********");
+		Node head2 = reverseLL(current2.next);
+		//display(head2);
+		
+		Node finalItr = head; 
+		while(finalItr.next != null) {
+			finalItr = finalItr.next;
+		}
+		finalItr.next = head2;
+
+		return head;
+
+	}
+
 	public static void main(String[] args) {
 
 		PrintIthNode s1 = new PrintIthNode();
@@ -173,6 +239,21 @@ public class PrintIthNode {
 		s1.head = deleteNode(s1.head, 0);
 
 		s1.display(s1.head);
+
+		s1.head = reverseLL(s1.head);
+
+		System.out.println("**************");
+
+		s1.display(s1.head);
+
+		System.out.println("******TTT********");
+
+		s1.head =  appendLastNToFirst(s1.head, 2);
+		
+		System.out.println("******appendLastNToFirst********");
+		
+		s1.display(s1.head);
+		
 
 	}
 
