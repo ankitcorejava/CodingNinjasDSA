@@ -45,6 +45,21 @@ public class BinaryTreeImplementation {
 		printTree(root.right);
 
 	}
+	
+	public static int getSum(BinaryTree root) {
+
+		if (root == null) {
+			return 0;
+		}
+		
+		int sum = root.data; 
+
+		int sum1 = getSum(root.left);
+		int sum2 = getSum(root.right);
+		
+		return (sum +sum1+sum2) ;
+
+	}
 
 	public static void printLevelWise(BinaryTree root) {
 		if (root == null) {
@@ -134,6 +149,8 @@ public class BinaryTreeImplementation {
 		System.out.println();
 
 		printLevelWise(root);
+		
+		System.out.println(getSum(root));
 	}
 
 }

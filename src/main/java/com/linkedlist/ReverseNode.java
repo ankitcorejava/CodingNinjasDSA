@@ -239,13 +239,14 @@ public class ReverseNode {
 				i++;
 			}
 
-			Node ref2 = ref.next; //Next reference
+			Node ref2 = ref.next; // Next reference
 
 			ref.next = null;
 			Node temp2 = reverse(pointer);
-			
-			/*System.out.println("*****************");
-			display(temp2);*/
+
+			/*
+			 * System.out.println("*****************"); display(temp2);
+			 */
 
 			tempRef.next = temp2;
 			while (tempRef.next != null) {
@@ -257,22 +258,74 @@ public class ReverseNode {
 		return temp;
 	}
 
+	public static Node reverseNode(Node head) {
+
+		if (head == null) {
+			return head;
+		}
+		Node current = head;
+		Node previous = null;
+
+		while (current != null) {
+			Node fwd = current.next;
+			current.next = previous;
+			previous = current;
+			current = fwd;
+		}
+
+		return previous;
+	}
+
+	public static Node bubbleSort(Node head) {
+		if (head == null) {
+			return head;
+		}
+
+		Node current = head;
+		Node itr1 = current;
+
+		while (itr1 != null && itr1.next != null) {
+
+			Node itr2 = itr1.next;
+			Node itr1Ref = itr1;
+
+			while (itr2 != null) {
+
+				Node itr2Ref = itr2;
+
+				if (itr1Ref.data > itr2Ref.data) {
+
+					System.out.println(itr1Ref.data + " > " + itr2Ref.data);
+					
+					
+
+				} 
+
+			}
+
+			itr1 = itr1.next;
+
+		}
+		return current;
+
+	}
+
 	public static void main(String[] args) {
 
 		ReverseNode s1 = new ReverseNode();
 		Node newNode0 = new Node(1);
 		s1.insertAtEnd(newNode0);
-		Node newNode1 = new Node(1);
+		Node newNode1 = new Node(13);
 		s1.insertAtEnd(newNode1);
-		Node newNode2 = new Node(1);
+		Node newNode2 = new Node(12);
 		s1.insertAtEnd(newNode2);
 		Node newNode3 = new Node(2);
 		s1.insertAtEnd(newNode3);
-		Node newNode4 = new Node(3);
+		Node newNode4 = new Node(32);
 		s1.insertAtEnd(newNode4);
 		Node newNode5 = new Node(3);
 		s1.insertAtEnd(newNode5);
-		Node newNode6 = new Node(4);
+		Node newNode6 = new Node(14);
 		s1.insertAtEnd(newNode6);
 		Node newNode7 = new Node(5);
 		s1.insertAtEnd(newNode7);
@@ -282,23 +335,24 @@ public class ReverseNode {
 		s1.insertAtEnd(newNode9);
 		Node newNode10 = new Node(8);
 		s1.insertAtEnd(newNode10);
-		Node newNode1000 = new Node(9);
+		Node newNode1000 = new Node(19);
 		s1.insertAtEnd(newNode1000);
 
 		// display(s1.head);
 
 		System.out.println();
 
-		s1.head = removeDuplicates(s1.head);
+		// s1.head = removeDuplicates(s1.head);
 
-		display(s1.head);
-
-		System.out.println();
-		//printReverse(head);
+		display(head);
 
 		System.out.println("**************************");
-		head = kReverse(head, 2);
+		head = reverseNode(head);
 		display(head);
+
+		System.out.println("**************************");
+		head = bubbleSort(head);
+		//display(head);
 
 	}
 
