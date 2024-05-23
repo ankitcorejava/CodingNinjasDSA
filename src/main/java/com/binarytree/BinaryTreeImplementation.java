@@ -152,5 +152,37 @@ public class BinaryTreeImplementation {
 		
 		System.out.println(getSum(root));
 	}
+	
+	
+
+	public static void postOrder(BinaryTree root) {
+
+		if (root == null) {
+			return;
+		}
+
+		/*int left = root.left == null ? -1 : root.left.data;
+		int right = root.right == null ? -1 : root.right.data;	*/	
+
+		postOrder(root.left);
+		postOrder(root.right);
+		System.out.println(root.data + " ");
+
+	}
+	
+	public static void preOrder(BinaryTree root) {
+
+		if (root == null) {
+			return;
+		}
+
+		System.out.println(root.data + " ");
+
+		preOrder(root.left);
+		preOrder(root.right);
+		
+
+	}
+	
 
 }
