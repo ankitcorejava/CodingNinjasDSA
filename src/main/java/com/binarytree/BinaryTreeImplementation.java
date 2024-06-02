@@ -151,6 +151,8 @@ public class BinaryTreeImplementation {
 		printLevelWise(root);
 		
 		System.out.println(getSum(root));
+		
+		mirrorBinaryTree(root);
 	}
 	
 	
@@ -182,6 +184,24 @@ public class BinaryTreeImplementation {
 		preOrder(root.right);
 		
 
+	}
+	
+	public static void mirrorBinaryTree(BinaryTree root){
+		//Your code goes here
+		
+		if(root == null) {
+			return; 
+		}
+		
+		BinaryTree left_temp = root.left;
+		BinaryTree right_temp = root.right;			
+		
+		root.left = right_temp;
+		root.right = left_temp;
+		
+		mirrorBinaryTree(root.left);
+		mirrorBinaryTree(root.right);
+		
 	}
 	
 
