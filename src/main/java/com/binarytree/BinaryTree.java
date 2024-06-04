@@ -1,5 +1,8 @@
 package com.binarytree;
 
+import java.util.ArrayDeque;
+import java.util.Queue;
+
 class BinaryTreeNode {
 
 	int data;
@@ -69,11 +72,65 @@ public class BinaryTree {
 
 		BinaryTreeNode noderight = everyNodeStoresSumOfAllAodesAtLeft(root.left.right);
 
-		root.data = root.data + (noderight == null? 0: noderight.data);
-		
+		root.data = root.data + (noderight == null ? 0 : noderight.data);
+
 		everyNodeStoresSumOfAllAodesAtLeft(root.right);
 
 		return root;
+
+	}
+
+	public static boolean findElementOfBinaryTree(BinaryTreeNode root, int key) {
+
+		boolean iState = false;
+
+		if (root == null) {
+			return false;
+		}
+
+		int left = root.left == null ? 0 : root.left.data;
+		int right = root.right == null ? 0 : root.right.data;
+
+		if (root.data == key || left == key || right == key) {
+			iState = true;
+		}
+
+		boolean iState_left = findElementOfBinaryTree(root.left, key);
+		boolean iState_right = findElementOfBinaryTree(root.right, key);
+
+		if (iState_left == true || iState_right == true || iState == true) {
+			iState = true;
+		}
+
+		return iState;
+	}
+
+	public static void levelOrderDisplay(BinaryTreeNode root) {
+		if (root == null) {
+			return;
+		}
+		Queue<BinaryTreeNode> parent_q = new ArrayDeque<>();
+		Queue<BinaryTreeNode> child_q = new ArrayDeque<>();
+
+		parent_q.add(root);
+
+		while (parent_q.size() > 0 || child_q.size() > 0) {
+
+			while (parent_q.size() > 0) {
+				BinaryTreeNode top = parent_q.peek();
+				System.out.print(top.data + " ");
+				if (top.left != null) {
+					child_q.add(top.left);
+				}
+				if (top.right != null) {
+					child_q.add(top.right);
+				}
+				parent_q.poll();
+			}
+			System.out.println();
+			parent_q = new ArrayDeque<>(child_q);
+			child_q.clear();
+		}
 
 	}
 
@@ -98,9 +155,19 @@ public class BinaryTree {
 
 		System.out.println("diameterOfBinaryTree : " + diameterOfBinaryTree(root));
 
-		everyNodeStoresSumOfAllAodesAtLeft(root);
+		System.out.println();
 		System.out.println("-----------------------------------------------------");
-		display(root);
+		levelOrderDisplay(root);
+
+		/*
+		 * everyNodeStoresSumOfAllAodesAtLeft(root);
+		 * System.out.println("-----------------------------------------------------");
+		 * display(root);
+		 * 
+		 * System.out.println();
+		 * System.out.println("-----------------------------------------------------");
+		 * System.out.println(findElementOfBinaryTree(root, 5));
+		 */
 
 	}
 
